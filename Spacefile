@@ -1,0 +1,11 @@
+# Spacefile Docs: https://go.deta.dev/docs/spacefile/v0
+v: 0
+micros:
+  - name: client
+    src: client
+    engine: next
+    primary: true
+  - name: server
+    src: server
+    engine: python3.9
+    primary: false
