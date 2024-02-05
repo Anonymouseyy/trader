@@ -12,11 +12,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-[#262626]">
       <body className={sansita.className + ' text-white px-[2.5%] py-[32px]'}>
-        <header className="flex-row w-full">
-    	    <h1 className='text-6xl gap-6 font-bold w-[50%] items-left text-left'>
+        <header className="flex flex-row w-full">
+    	    <h1 className='flex text-6xl gap-6 font-bold text-left w-[50%]'>
         	  Trader
     	    </h1>
-          <div className='flex-row text-6xl gap-6 font-bold w-[50%] items-left text-left justify-end'>
+          <div className='flex flex-row text-6xl gap-6 font-bold justify-end w-[50%]'>
             <h1 className='text-5xl gap-6 font-bold items-left text-left'>
         	    History
     	      </h1>
