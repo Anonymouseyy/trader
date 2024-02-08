@@ -12,7 +12,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-[#262626]">
       <body className={sansita.className + ' text-white px-[2.5%] py-[32px] h-[100vh]'}>
-        <header className="flex flex-row w-full">
+        <header className="flex flex-row w-full pb-3">
     	    <h1 className='flex text-6xl gap-6 font-bold text-left w-[50%]'>
         	  Trader
     	    </h1>
