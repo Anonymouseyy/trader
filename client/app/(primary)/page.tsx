@@ -39,7 +39,7 @@ export default function Home() {
 		  </div>
 		  <div className="flex flex-col w-[50%] h-full pl-2">
 		    <div className="w-full h-[48%] my-[1%] bg-[#333333] rounded-2xl">
-
+				
 		    </div>
   		    <div className="w-full h-[48%] my-[1%] bg-[#333333] rounded-2xl">
 
