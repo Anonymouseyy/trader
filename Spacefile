@@ -2,10 +2,12 @@
 v: 0
 micros:
   - name: client
-    src: client
+    src: ./client
     engine: next
     primary: true
   - name: server
-    src: server
+    src: ./server
+    path: server
     engine: python3.9
     primary: false
+    dev: python main.py

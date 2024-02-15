@@ -23,13 +23,13 @@ def home():
 
 @app.route("/api/leaderboard", methods=["GET"])
 def leaderboard():
-    lb = mk.get_leaderboard()
+    lb = mk.get_leaderboard("zest-fest")
 
-    return jsonify(lb)
+    return jsonify(lb[1:])
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=8080)
+    app.run(port=4201)
 
 # check a watchlist
 # pick random stock
