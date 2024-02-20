@@ -28,6 +28,28 @@ def leaderboard():
     return jsonify(lb[1:])
 
 
+@app.route("/api/watchlist", methods=["GET"])
+def watchlist():
+    wl = mk.get_watchlist("3599069723688224")
+    ret = []
+
+    for item in wl["Items"]:
+        tick = item["Ticker"]
+
+        try:
+            price = mk.get_price(tick)[len(tick)+3:]
+        except:
+            price = "Unknown"
+
+        ret.append({
+            "ticker": tick,
+            "company": item["CompanyName"],
+            "price": price
+        })
+
+    return jsonify(ret)
+
+
 if __name__ == "__main__":
     app.run(port=4201)
 
