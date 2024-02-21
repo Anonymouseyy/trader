@@ -49,10 +49,6 @@ def watchlist():
 
     return jsonify(ret)
 
-
-if __name__ == "__main__":
-    app.run()
-
 # check a watchlist
 # pick random stock
 # if up then sell
