@@ -51,7 +51,7 @@ def watchlist():
 
 
 if __name__ == "__main__":
-    app.run(port=4201)
+    app.run()
 
 # check a watchlist
 # pick random stock

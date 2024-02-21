@@ -4,12 +4,6 @@ import Clock from "react-live-clock"
 
 export default function Home() {
 	const d = new Date()
-	const options = {
-		weekday: 'long',
-		year: 'numeric',
-		month: 'long',
-		day: 'numeric',
-	};
 
 	let market = "closed"
 	if ((d.getUTCHours() < 23 && d.getUTCHours() > 14) || (d.getUTCHours() >= 13 && d.getUTCMinutes() >= 30)) {
@@ -37,7 +31,7 @@ export default function Home() {
 			<div className="w-full h-[28%] my-[1%] bg-[#333333] rounded-2xl">
 				<div className="flex flex-row w-full py-6 px-7 place-content-between">
 					<h2 className="text-4xl">
-						{ d.toLocaleDateString(undefined, options) }
+						{ d.toLocaleDateString('en-US', { weekday: "long", year: "numeric", month: "long", day: "numeric", }) }
 					</h2>
 					<Clock 
           				format={'h:mm:ss a'} 

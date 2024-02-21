@@ -5,9 +5,10 @@ micros:
     src: ./client
     engine: next
     primary: true
+    dev: npm run dev
   - name: server
     src: ./server
     path: server
     engine: python3.9
-    primary: false
+    run: gunicorn main:app
     dev: python main.py
