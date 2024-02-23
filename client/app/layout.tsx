@@ -13,14 +13,14 @@ export default function RootLayout({
     <html lang="en" className="bg-[#262626]">
       <body className={sansita.className + ' text-white px-[2.5%] py-[32px] h-[100vh]'}>
         <header className="flex flex-row w-full pb-3">
-    	    <h1 className='flex text-6xl gap-6 font-bold text-left w-[50%]'>
+    	    <a className="flex gap-6 w-[50%]" href="/"><h1 className='text-6xl font-bold text-left'>
         	  Trader
-    	    </h1>
+    	    </h1></a>
           <div className='flex flex-row gap-6 font-bold justify-end items-center w-[50%]'>
             <h1 className='text-5xl font-bold items-center'>
         	    History
     	      </h1>
-            <Image src="/blankpfp.png" alt="blank" width="64" height="64"></Image>
+            <a href="/account"><Image src="/blankpfp.png" alt="blank" width="64" height="64"></Image></a>
           </div>
   		  </header>
         {children}
