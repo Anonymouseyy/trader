@@ -17,9 +17,6 @@ export default function RootLayout({
         	  Trader
     	    </h1></a>
           <div className='flex flex-row gap-6 font-bold justify-end items-center w-[50%]'>
-            <h1 className='text-5xl font-bold items-center'>
-        	    History
-    	      </h1>
             <a href="/account"><Image src="/blankpfp.png" alt="blank" width="64" height="64"></Image></a>
           </div>
   		  </header>
