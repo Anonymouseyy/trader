@@ -3,10 +3,30 @@ import React, { useEffect, useState } from "react"
 
 export default function Account() {
 	const [message, setMessage] = useState("")
+	const [isLoading, setIsLoading] = useState(false)
 
     async function updateInfo(event: React.FormEvent<HTMLFormElement>) {
 		event.preventDefault()
+		setIsLoading(true)
 		setMessage("Loading...")
+
+		try {
+			const formData = new FormData(event.currentTarget)
+			console.log(event.currentTarget)
+			const response = await fetch('http://127.0.0.1:4201/api/account', {
+			  method: 'POST',
+			  body: formData,
+			})
+	   
+			// Handle response if necessary
+			const data = await response.json()
+			setMessage(data)
+		} catch (error) {
+			// Handle error if necessary
+			console.error(error)
+		} finally {
+			setIsLoading(false) // Set loading to false when the request completes
+		}
     }
 
     return (
@@ -28,7 +48,7 @@ export default function Account() {
 						<label htmlFor="watchlist" className="text-3xl mx-3 w-[30%]">Watchlist: </label>
 						<input type="text" id="watchlist" width="" className="bg-[#232323] outline-[#434343] flex-1 h-10 rounded-xl px-2" required/>
 					</div>
-					<button type="submit" className="text-2xl w-[30%] h-10 bg-[#0085FF] rounded-xl m-2">{message ? message : "Save"}</button>
+					<button type="submit" className="text-2xl w-[30%] h-10 bg-[#0085FF] rounded-xl m-2" disabled={ isLoading }>{message ? message : "Save"}</button>
               	</form>
           	</div>
         </>

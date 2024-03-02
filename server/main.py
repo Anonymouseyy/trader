@@ -49,8 +49,10 @@ def watchlist():
 
     return jsonify(ret)
 
-# check a watchlist
-# pick random stock
-# if up then sell
-# if down > 10% sell
-# deta to run
+
+@app.route("/api/account", methods=["POST"])
+def account():
+    print("Hi")
+    print(request.get_json())
+
+    return jsonify("")
