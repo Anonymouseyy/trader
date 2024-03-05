@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react"
 export default function Account() {
 	const [message, setMessage] = useState("")
 	const [isLoading, setIsLoading] = useState(false)
+	const [user, setUser] = useState({ email: "", password: "", watchlist: "" });
 
     async function updateInfo(event: React.FormEvent<HTMLFormElement>) {
 		event.preventDefault()
@@ -11,11 +12,12 @@ export default function Account() {
 		setMessage("Loading...")
 
 		try {
-			const formData = new FormData(event.currentTarget)
-			console.log(event.currentTarget)
 			const response = await fetch('http://127.0.0.1:4201/api/account', {
 			  method: 'POST',
-			  body: formData,
+			  headers: {
+				"Content-Type": "application/json",
+			  },
+			  body: JSON.stringify(user),
 			})
 	   
 			// Handle response if necessary
@@ -38,15 +40,18 @@ export default function Account() {
               	<form className="flex w-[100%] py-5 flex-col items-center" onSubmit={updateInfo}>
 					<div className="flex w-[100%] items-center p-3">
 						<label htmlFor="mail" className="text-3xl mx-3 w-[30%]">Email: </label>
-						<input type="email" id="mail" width="" className="bg-[#232323] outline-[#434343] flex-1 h-10 rounded-xl px-2" required/>
+						<input type="email" id="mail" width="" className="bg-[#232323] outline-[#434343] flex-1 h-10 rounded-xl px-2" 
+						onChange={(e) => setUser({ ...user, email: e.target.value })} required/>
 					</div>
 					<div className="flex w-[100%] items-center p-3">
 						<label htmlFor="password" className="text-3xl mx-3 w-[30%]">Password: </label>
-						<input type="password" id="password" width="" className="bg-[#232323] outline-[#434343] flex-1 h-10 rounded-xl px-2" required/>
+						<input type="password" id="password" width="" className="bg-[#232323] outline-[#434343] flex-1 h-10 rounded-xl px-2" 
+						onChange={(e) => setUser({ ...user, password: e.target.value })} required/>
 					</div>
 					<div className="flex w-[100%] items-center p-3">
 						<label htmlFor="watchlist" className="text-3xl mx-3 w-[30%]">Watchlist: </label>
-						<input type="text" id="watchlist" width="" className="bg-[#232323] outline-[#434343] flex-1 h-10 rounded-xl px-2" required/>
+						<input type="text" id="watchlist" width="" className="bg-[#232323] outline-[#434343] flex-1 h-10 rounded-xl px-2" 
+						onChange={(e) => setUser({ ...user, watchlist: e.target.value })} required/>
 					</div>
 					<button type="submit" className="text-2xl w-[30%] h-10 bg-[#0085FF] rounded-xl m-2" disabled={ isLoading }>{message ? message : "Save"}</button>
               	</form>
