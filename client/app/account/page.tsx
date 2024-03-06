@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react"
 export default function Account() {
 	const [message, setMessage] = useState("")
 	const [isLoading, setIsLoading] = useState(false)
-	const [user, setUser] = useState({ email: "...", password: "...", watchlist: "..." });
+	const [user, setUser] = useState({ email: "...", password: "...", watchlist: "...", game: "..." });
 
 	useEffect(() => {
 		fetch("http://127.0.0.1:4201/api/account")
@@ -58,6 +58,11 @@ export default function Account() {
 						<label htmlFor="watchlist" className="text-3xl mx-3 w-[30%]">Watchlist: </label>
 						<input type="text" id="watchlist" width="" className="bg-[#232323] outline-[#434343] flex-1 h-10 rounded-xl px-2" 
 						onChange={(e) => setUser({ ...user, watchlist: e.target.value })} value={user.watchlist} required/>
+					</div>
+					<div className="flex w-[100%] items-center p-3">
+						<label htmlFor="game" className="text-3xl mx-3 w-[30%]">Game: </label>
+						<input type="text" id="game" width="" className="bg-[#232323] outline-[#434343] flex-1 h-10 rounded-xl px-2" 
+						onChange={(e) => setUser({ ...user, game: e.target.value })} value={user.game} required/>
 					</div>
 					<button type="submit" className="text-2xl w-[30%] h-10 bg-[#0085FF] rounded-xl m-2" disabled={ isLoading }>{message ? message : "Save"}</button>
               	</form>

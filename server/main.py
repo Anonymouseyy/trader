@@ -67,7 +67,8 @@ def account():
             empty = {
                 "email": "",
                 "password": "",
-                "watchlist": ""
+                "watchlist": "",
+                "game": ""
             }
             
             db.put(empty, "data")
