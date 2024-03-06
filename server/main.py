@@ -1,6 +1,6 @@
 from marketwatch import MarketWatch
 import os
-import deta
+from deta import Deta
 from dotenv import load_dotenv
 from flask import Flask, jsonify, request
 from flask_cors import CORS
@@ -13,6 +13,9 @@ user = os.environ.get("USER")
 password = os.environ.get("PASSWORD")
 mk = MarketWatch(user, password)
 game = os.environ.get("GAME")
+
+deta = Deta()
+db = deta.Base("user")
 
 @app.route("/api/home", methods=["GET"])
 def home():
@@ -50,9 +53,24 @@ def watchlist():
     return jsonify(ret)
 
 
-@app.route("/api/account", methods=["POST"])
+@app.route("/api/account", methods=["GET", "POST"])
 def account():
-    print("Hi")
-    print(request.get_json())
+    if request.method == "POST":
+        user = request.get_json()
+        db.put(user, "data")
+        return jsonify("")
+    
+    if request.method == "GET":
+        user = db.get("data")
 
-    return jsonify("")
+        if user is None:
+            empty = {
+                "email": "",
+                "password": "",
+                "watchlist": ""
+            }
+            
+            db.put(empty, "data")
+            user = empty
+        
+        return jsonify(user)
