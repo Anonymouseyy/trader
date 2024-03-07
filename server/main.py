@@ -8,25 +8,34 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-load_dotenv()
-user = os.environ.get("USER")
-password = os.environ.get("PASSWORD")
-mk = MarketWatch(user, password)
-game = os.environ.get("GAME")
-
 deta = Deta()
 db = deta.Base("user")
+user = db.get("data")
 
-@app.route("/api/home", methods=["GET"])
-def home():
-    return jsonify({
-        "message": "trader"
-    })
+if user is None:
+    mk = None
+    game = None
+    wl = None
+elif user:
+    try:
+        mk = MarketWatch(user["email"], user["password"])
+    except:
+        mk = None
 
+if mk is not None:
+    games = mk.get_games()
+    
+    if user["game"] not in [x["id"] for x in games]:
+        game = None
+    else:
+        for g in games:
+            pass
 
 @app.route("/api/leaderboard", methods=["GET"])
 def leaderboard():
-    lb = mk.get_leaderboard("zest-fest")
+    if mk is None or game is None:
+        return jsonify("Invalid Marketwatch Information")
+    lb = mk.get_leaderboard(game)
 
     return jsonify(lb[1:])
 
