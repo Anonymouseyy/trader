@@ -28,8 +28,7 @@ if mk is not None:
     if user["game"] not in [x["id"] for x in games]:
         game = None
     else:
-        for g in games:
-            pass
+        game = user["game"]
 
 @app.route("/api/leaderboard", methods=["GET"])
 def leaderboard():
@@ -42,6 +41,8 @@ def leaderboard():
 
 @app.route("/api/watchlist", methods=["GET"])
 def watchlist():
+    if mk is None:
+        return jsonify("Invalid Marketwatch Information")
     wl = mk.get_watchlist("3599069723688224")
     ret = []
 

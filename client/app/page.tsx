@@ -16,13 +16,25 @@ export default function Home() {
 	useEffect(() => {
 		fetch("http://127.0.0.1:4201/api/leaderboard")
 		.then(response => response.json())
-		.then(data => setlb(data))
+		.then(data => {
+			if (data == "Invalid Marketwatch Information") {
+				window.alert(data);
+			} else {
+				setlb(data)
+			}
+		})
 	}, [])
 
 	useEffect(() => {
 		fetch("http://127.0.0.1:4201/api/watchlist")
 		.then(response => response.json())
-		.then(data => setwl(data))
+		.then(data => {
+			if (data == "Invalid Marketwatch Information") {
+				window.alert(data);
+			} else {
+				setwl(data)
+			}
+		})
 	}, [])
 
 	return (
